@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     // display current day/time on page
     $("#currentDay").text(moment().format("dddd, MMMM Do"));
-    // $("#currentTime").text(moment().format("LTS"));
+    $("#currentTime").text(moment().format("LTS"));
 
     // Save events in time slot
     $(".saveBtn").on("click", function () {
