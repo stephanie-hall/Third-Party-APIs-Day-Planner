@@ -26,4 +26,4 @@ THEN the saved events persist
 
 ## Link to application
 
-[stephanie-hall.github.io/Third-Party-APIs-Day-Planner](https://stephanie-hall.github.io/Third-Party-APIs-Day-Planner/)
+[Third-Party-APIs-Day-Planner](https://stephanie-hall.github.io/Third-Party-APIs-Day-Planner/)
