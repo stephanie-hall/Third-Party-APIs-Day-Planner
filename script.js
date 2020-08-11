@@ -1,41 +1,44 @@
-$(document).ready(function () {
-
-    // display current day/time on page
-    $("#currentDay").text(moment().format("dddd, MMMM Do"));
-    $("#currentTime").text(moment().format("LTS"));
-
-    // Save events in time slot
-    $(".saveBtn").on("click", function () {
-        let textContent = $(this).siblings(".description").val();
-        let time = $(this).parent().attr("id");
-        localStorage.setItem(time, textContent);
+$(document).ready(function() {
+    // listen for save button clicks
+    $(".saveBtn").on("click", function() {
+      // get nearby values
+      var value = $(this).siblings(".description").val();
+      var time = $(this).parent().attr("id");
+  
+      // save in localStorage
+      localStorage.setItem(time, value);
     });
-
-    function hours() {
-
-        // Show past, present, and future times relative to current time
-        $(".time-block").each(function () {
-            let timeBlockHour = parseInt($(this).attr("id").split("-")[1]);
-
-            if (currentTime > timeBlockHour) {
-                $(this).removeClass("present");
-                $(this).addClass("past");
-                $(this).removeClass("future");
-
-            } else if (currentTime === timeBlockHour) {
-                $(this).removeClass("past");
-                $(this).addClass("present");
-                $(this).removeClass("future");
-
-            } else {
-                $(this).addClass("future");
-            }
-        })
+  
+    function hourUpdater() {
+      // get current number of hours
+      var currentHour = moment().hours();
+  
+      // loop over time blocks
+      $(".time-block").each(function() {
+        var blockHour = parseInt($(this).attr("id").split("-")[1]);
+  
+        // check if we've moved past this time
+        if (blockHour < currentHour) {
+          $(this).addClass("past");
+        } 
+        else if (blockHour === currentHour) {
+          $(this).removeClass("past");
+          $(this).addClass("present");
+        } 
+        else {
+          $(this).removeClass("past");
+          $(this).removeClass("present");
+          $(this).addClass("future");
+        }
+      });
     }
-
-    // Use local storage to save events
-    hours();
-    let interval = setInterval(hours, 15000);
+  
+    hourUpdater();
+  
+    // set up interval to check if current time needs to be updated
+    var interval = setInterval(hourUpdater, 15000);
+  
+    // load any saved data from localStorage
     $("#hour-9 .description").val(localStorage.getItem("hour-9"));
     $("#hour-10 .description").val(localStorage.getItem("hour-10"));
     $("#hour-11 .description").val(localStorage.getItem("hour-11"));
@@ -45,5 +48,7 @@ $(document).ready(function () {
     $("#hour-15 .description").val(localStorage.getItem("hour-15"));
     $("#hour-16 .description").val(localStorage.getItem("hour-16"));
     $("#hour-17 .description").val(localStorage.getItem("hour-17"));
-
-})
+  
+    // display current day on page
+    $("#currentDay").text(moment().format("dddd, MMMM Do"));
+  });

@@ -22,8 +22,8 @@ THEN the saved events persist
 
 ## Displayed application
 
-![Work Day Scheduler](/Assets/unit5.PNG)
+![Work Day Scheduler](unit5.PNG)
 
 ## Link to application
 
-[GitHub](https://stephanie-hall.github.io/Third-Party-APIs-Day-Planner/)
+[stephanie-hall.github.io/Third-Party-APIs-Day-Planner](https://stephanie-hall.github.io/Third-Party-APIs-Day-Planner/)
